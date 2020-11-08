@@ -1,0 +1,13 @@
+#! /usr/bin/env node
+
+var http = require('http');
+
+var port = process.env.PORT || 8080;
+var ip= process.env.IP || "127.0.0.1";
+
+var app = require('./app');
+var server = http.createServer(app);
+
+server.listen( port, ip, ()=>{
+    console.log(`Listening on ${ip}. port ${port}`);
+});

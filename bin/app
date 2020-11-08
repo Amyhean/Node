@@ -1,0 +1,36 @@
+#! /usr/bin/env node
+
+function app( req, res ){
+
+if ( req.method === 'GET'){
+
+    
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello Node\n');
+}
+
+else
+if (req.method === 'POST'){
+post(req, res);
+}
+else 
+res.end(); 
+
+}
+
+function post(req,res){
+    var body = '';
+
+    req.on('data', data => {
+
+        body += data;
+    })
+    req.on('end', ()=>{
+console.log(body);
+res.statusCode = 200;
+res.setHeader('Content-Type', 'aplication/json');
+res.end();
+    })
+}
+module.exports = app;
